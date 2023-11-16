@@ -1,0 +1,11 @@
+groups:
+  - name: example
+    rules:
+      - alert: HighApiHits
+        expr: sum(api_hits) >= 5
+        for: 1m
+        annotations:
+          summary: "High number of API hits"
+          description: "Total API hits have reached {{ $value }}."
+        labels:
+          severity: critical
