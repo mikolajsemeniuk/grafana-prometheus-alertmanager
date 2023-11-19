@@ -24,6 +24,12 @@ services:
     volumes:
       - ./alertmanager:/etc/alertmanager
 
+  pushgateway:
+    container_name: pushgateway
+    image: prom/pushgateway:latest
+    ports:
+      - 9091:9091
+
   grafana:
     container_name: grafana
     image: grafana/grafana:latest
