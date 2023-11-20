@@ -17,11 +17,18 @@ func init() {
 }
 
 func main() {
-	handler := func(w http.ResponseWriter, r *http.Request) {
+	increment := func(w http.ResponseWriter, r *http.Request) {
 		hits.WithLabelValues("api").Inc()
 		w.Write([]byte("This is the API endpoint."))
 	}
-	http.HandleFunc("/hits", handler)
+	http.HandleFunc("/inc", increment)
+
+	reset := func(w http.ResponseWriter, r *http.Request) {
+		hits.Reset()
+		w.Write([]byte("metric reset"))
+	}
+	http.HandleFunc("/reset", reset)
+
 	http.Handle("/metrics", promhttp.Handler())
 	http.ListenAndServe(":8080", nil)
 }

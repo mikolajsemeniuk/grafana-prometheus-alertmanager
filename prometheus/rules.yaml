@@ -3,7 +3,8 @@ groups:
     rules:
       - alert: HighApiHits
         expr: sum(api_hits) >= 5
-        for: 1m
+        # Time after which prometheus will move alert from pending to firing
+        for: 10s
         annotations:
           summary: "High number of API hits"
           description: "Total API hits have reached {{ $value }}."

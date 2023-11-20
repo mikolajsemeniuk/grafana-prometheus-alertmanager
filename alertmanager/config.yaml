@@ -2,13 +2,13 @@ global:
   resolve_timeout: 5m
 
 route:
-  group_by: ["alertname"]
+  group_by: [alertname]
   group_wait: 10s
   group_interval: 10s
-  repeat_interval: 1h
-  receiver: "web.hook"
+  repeat_interval: 10s
+  receiver: test
 
 receivers:
-  - name: "web.hook"
+  - name: test
     webhook_configs:
-      - url: "http://example.com/"
+      - url: http://example.com/

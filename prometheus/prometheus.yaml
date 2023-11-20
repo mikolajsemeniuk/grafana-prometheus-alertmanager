@@ -6,6 +6,7 @@ global:
 
 rule_files:
   - rules.yaml
+  # add as many files as you want
 
 alerting:
   alertmanagers:
@@ -14,14 +15,14 @@ alerting:
             - alertmanager:9093
 
 scrape_configs:
-  - job_name: "prometheus"
+  - job_name: prometheus
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: [localhost:9090]
 
-  - job_name: "docker"
+  - job_name: docker
     static_configs:
-      - targets: ["host.docker.internal:8080"]
+      - targets: [host.docker.internal:8080]
 
-  - job_name: "pushgateway"
+  - job_name: pushgateway
     static_configs:
-      - targets: ["pushgateway:9091"]
+      - targets: [pushgateway:9091]
